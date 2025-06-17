@@ -1,9 +1,30 @@
-import example.pepita
+import example.*
+describe "parte 1" {
+  var excursionCiudad = new ExcursionACiudad(atracciones=4,idiomas=["español"])
+  var excursionTropical = new ExcursionACiudadTropical(idiomas=["ingles", "frances"], atracciones=4)
+  var excursionCiudad2 = new ExcursionACiudad(idiomas=["ingles"], atracciones=8)
+  var excursionTropical2 = new ExcursionACiudadTropical(idiomas=["italiano"], atracciones=10)
 
-describe "group of tests for pepita" {
-
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "una excursión a ciudad normal (no tropical) en la que se visitan 4 atracciones, lleva 2 días, no implica esfuerzo, y no sirve para broncearse." {
+    assert.equals(2, excursionCiudad.duracion())
+    assert.notThat(excursionCiudad.implicaEsfuerzo())
+    assert.notThat(excursionCiudad.sirveParaBroncearse())
+  }
+  test "una excursión a ciudad tropical en la que se visitan 4 atracciones, lleva 3 días, no implica esfuerzo, y sí sirve para broncearse."{
+    assert.equals(3, excursionTropical.duracion())
+    assert.notThat(excursionTropical.implicaEsfuerzo())
+    assert.that(excursionTropical.sirveParaBroncearse())
+  }
+  test "una excursión a ciudad normal (no tropical) en la que se visitan 8 atracciones, lleva 4 días, implica esfuerzo, y no sirve para broncearse."{
+    assert.equals(4, excursionCiudad2.duracion())
+    assert.that(excursionCiudad2.implicaEsfuerzo())
+    assert.notThat(excursionCiudad2.sirveParaBroncearse())
+  }
+  test "una excursión a ciudad tropical en la que se visitan 10 atracciones, lleva 6 días, no implica esfuerzo, y sí sirve para broncearse.
+Salida de trekking"{
+    assert.equals(6, excursionTropical2.duracion())
+    assert.notThat(excursionTropical2.implicaEsfuerzo())
+    assert.that(excursionTropical2.sirveParaBroncearse())
   }
 
 }
